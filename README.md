@@ -1,4 +1,4 @@
-# Labels from Stock Maintenance - Purchaes(in)
+# Labels from Stock Maintenance - Purchases(in)
 Output a file in csv file format from which labels can be printed
 
 ## Description
