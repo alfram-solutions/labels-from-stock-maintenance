@@ -1,0 +1,5 @@
+#
+#Mon Dec 28 14:31:21 GMT 2020
+password=abc123
+dbUrl=jdbc\:mysql\://localhost/openbravopos
+username=pos
