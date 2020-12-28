@@ -18,7 +18,7 @@
                               <TextField prefHeight="25.0" prefWidth="104.0" />
                               <Button mnemonicParsing="false" text="Time" />
                            </children></HBox>
-                        <HBox prefHeight="42.0" prefWidth="291.0">
+                        <HBox prefHeight="60.0" prefWidth="291.0">
                            <children>
                               <Label text="End" />
                               <DatePicker prefHeight="25.0" prefWidth="125.0" />
@@ -26,7 +26,9 @@
                               <Button mnemonicParsing="false" text="Time" />
                            </children>
                         </HBox>
-                        <ListView prefHeight="365.0" prefWidth="291.0" />
+                        <Button mnemonicParsing="false" text="Search" />
+                        <Separator prefWidth="200.0" />
+                        <ListView prefHeight="364.0" prefWidth="291.0" />
                      </children>
                   </VBox>
                </children>
