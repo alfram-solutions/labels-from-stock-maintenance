@@ -5,6 +5,51 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labels_from_stock_maintenance.LabelsController">
    <children>
+      <SplitPane dividerPositions="0.4608150470219436" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <VBox layoutX="-1.0" layoutY="25.0" prefHeight="456.0" prefWidth="241.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+                     <children>
+                        <HBox prefHeight="46.0" prefWidth="291.0">
+                           <children>
+                              <Label text="Start" />
+                              <DatePicker prefHeight="25.0" prefWidth="117.0" />
+                              <TextField prefHeight="25.0" prefWidth="104.0" />
+                              <Button mnemonicParsing="false" text="Time" />
+                           </children></HBox>
+                        <HBox prefHeight="42.0" prefWidth="291.0">
+                           <children>
+                              <Label text="End" />
+                              <DatePicker prefHeight="25.0" prefWidth="125.0" />
+                              <TextField prefHeight="25.0" prefWidth="103.0" />
+                              <Button mnemonicParsing="false" text="Time" />
+                           </children>
+                        </HBox>
+                        <ListView prefHeight="365.0" prefWidth="291.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <VBox layoutY="23.0" prefHeight="453.0" prefWidth="391.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+                     <children>
+                        <HBox prefHeight="40.0" prefWidth="341.0">
+                           <children>
+                              <Label prefHeight="17.0" prefWidth="83.0" text="Export to CSV" />
+                              <Button mnemonicParsing="false" text="Export" />
+                           </children>
+                        </HBox>
+                        <Separator prefHeight="9.0" prefWidth="341.0" />
+                        <CheckBox mnemonicParsing="false" text="Pick All" />
+                        <Separator prefHeight="10.0" prefWidth="341.0" />
+                        <ListView prefHeight="369.0" prefWidth="341.0" />
+                     </children></VBox>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
       <MenuBar prefHeight="25.0" prefWidth="640.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
