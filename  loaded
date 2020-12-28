@@ -1,0 +1,5 @@
+#
+#Mon Dec 28 14:50:12 GMT 2020
+password=abc123
+dbUrl=jdbc\:mysql\://
+username=pos

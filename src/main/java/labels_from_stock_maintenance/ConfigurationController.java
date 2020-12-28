@@ -4,7 +4,9 @@ package labels_from_stock_maintenance;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.io.*;
 import java.net.URL;
@@ -30,7 +32,16 @@ public class ConfigurationController implements Initializable {
         private TextField txtDBUrl;
 
         @FXML
+        private Button btnClose;
+
+        @FXML
+        private Button btnSave;
+
+        @FXML
         void cancelConfig(ActionEvent event) {
+
+            Stage stage = (Stage) btnClose.getScene().getWindow();
+            stage.close();
 
         }
 
@@ -57,6 +68,11 @@ public class ConfigurationController implements Initializable {
                 LOGGER.warning(ioe.getMessage());
             }
 
+            Stage stage = (Stage) btnSave.getScene().getWindow();
+            stage.close();
+
+
+
         }
 
         private void  loadConfig() {
@@ -71,7 +87,7 @@ public class ConfigurationController implements Initializable {
                     setTextFields(configProps);
 
                     configInputStream.close();
-                    LOGGER.info(CONFIG_FILENAME = " loaded");
+                    LOGGER.info(CONFIG_FILENAME + " loaded");
 
                 } else {
                     Properties emptyConfigProps = new Properties();

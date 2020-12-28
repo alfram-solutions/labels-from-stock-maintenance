@@ -61,8 +61,8 @@
             <Separator prefHeight="200.0" />
             <ButtonBar prefHeight="40.0" prefWidth="200.0">
               <buttons>
-                <Button mnemonicParsing="false" onAction="#cancelConfig" text="Cancel" />
-                  <Button mnemonicParsing="false" onAction="#saveConfig" text="Save" />
+                <Button fx:id="btnClose" mnemonicParsing="false" onAction="#cancelConfig" text="Cancel" />
+                  <Button fx:id="btnSave" mnemonicParsing="false" onAction="#saveConfig" text="Save" />
               </buttons>
             </ButtonBar>
          </children></VBox>
