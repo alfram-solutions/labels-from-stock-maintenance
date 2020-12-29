@@ -11,7 +11,7 @@
       <HBox prefHeight="50.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Spinner fx:id="spinHours" />
-            <Spinner fx:id="soinMins" />
+            <Spinner fx:id="spinMins" />
          </children></HBox>
       <HBox prefHeight="50.0" prefWidth="300.0" AnchorPane.topAnchor="50.0">
          <children>
