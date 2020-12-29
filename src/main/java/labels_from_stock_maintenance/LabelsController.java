@@ -11,10 +11,13 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
@@ -41,8 +44,21 @@ public class LabelsController implements Initializable {
     private LocalDate startDate;
     private LocalDate endDate;
 
+    private DBController dbController;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        initDateTime();
+        try {
+            dbController = new DBController();
+        } catch (IOException | SQLException ioe) {
+            LOGGER.warning(ioe.getLocalizedMessage());
+        }
+
+    }
+
+
+    private void initDateTime() {
         startHours = 0;
         startMins = 0;
         endHours = 0;
@@ -54,10 +70,8 @@ public class LabelsController implements Initializable {
         txtEndTime.setText(endHours + ":" + endMins);
         startDatePicker.setValue(startDate);
         endDatePicker.setValue(endDate);
-
-
-
     }
+
 
     @FXML
     public void openConfig(ActionEvent actionEvent) throws IOException{

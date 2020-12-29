@@ -37,6 +37,12 @@ public class ConfigurationController implements Initializable {
         @FXML
         private Button btnSave;
 
+        public String getConfigFilename() {
+            return CONFIG_FILENAME;
+        }
+
+
+
         @FXML
         void cancelConfig(ActionEvent event) {
 
@@ -75,11 +81,16 @@ public class ConfigurationController implements Initializable {
 
         }
 
+        public Boolean isConfigFile() {
+            var isFile = Files.exists(Path.of(CONFIG_FILENAME));
+            return isFile;
+        }
+
         private void  loadConfig() {
             try {
-                Boolean isConfigFile = Files.exists(Path.of(CONFIG_FILENAME));
+                Boolean isConfigProps = isConfigFile();
 
-                if(isConfigFile) {
+                if(isConfigProps) {
                     FileInputStream configInputStream = new FileInputStream(CONFIG_FILENAME);
                     Properties configProps = new Properties();
                     configProps.load(configInputStream);
