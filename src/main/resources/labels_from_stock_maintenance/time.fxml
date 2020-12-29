@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane prefHeight="100.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labels_from_stock_maintenance.TimeController">
+   <children>
+      <HBox prefHeight="50.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Spinner fx:id="spinHours" />
+            <Spinner fx:id="soinMins" />
+         </children></HBox>
+      <HBox prefHeight="50.0" prefWidth="300.0" AnchorPane.topAnchor="50.0">
+         <children>
+            <ButtonBar prefHeight="40.0" prefWidth="200.0">
+              <buttons>
+                <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#cancelTime" text="Cancel" />
+                  <Button fx:id="btnOK" mnemonicParsing="false" onAction="#getTime" text="OK" />
+              </buttons>
+            </ButtonBar>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

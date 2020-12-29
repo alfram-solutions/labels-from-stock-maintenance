@@ -16,19 +16,19 @@
                               <Label text="Start" />
                               <DatePicker prefHeight="25.0" prefWidth="117.0" />
                               <TextField prefHeight="25.0" prefWidth="104.0" />
-                              <Button mnemonicParsing="false" text="Time" />
+                              <Button mnemonicParsing="false" onAction="#openStartTimePicker" text="Time" />
                            </children></HBox>
                         <HBox prefHeight="60.0" prefWidth="291.0">
                            <children>
                               <Label text="End" />
                               <DatePicker prefHeight="25.0" prefWidth="125.0" />
                               <TextField prefHeight="25.0" prefWidth="103.0" />
-                              <Button mnemonicParsing="false" text="Time" />
+                              <Button mnemonicParsing="false" onAction="#openEndTimePicker" text="Time" />
                            </children>
                         </HBox>
                         <Button mnemonicParsing="false" text="Search" />
                         <Separator prefWidth="200.0" />
-                        <ListView prefHeight="364.0" prefWidth="291.0" />
+                        <ListView prefHeight="361.0" prefWidth="291.0" />
                      </children>
                   </VBox>
                </children>

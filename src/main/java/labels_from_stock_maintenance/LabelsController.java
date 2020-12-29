@@ -12,8 +12,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 public class LabelsController implements Initializable {
+
+    private static final Logger LOGGER = Logger.getLogger(LabelsController.class.getName());
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -32,5 +35,31 @@ public class LabelsController implements Initializable {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setScene(scene);
             stage.showAndWait();
+    }
+
+    @FXML
+    public void openStartTimePicker(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("time.fxml"));
+        Parent parent = fxmlLoader.load();
+        var configurationController = fxmlLoader.<TimeController>getController();
+
+        Scene scene = new Scene(parent, 300, 100);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.showAndWait();
+    }
+
+    @FXML
+    public void openEndTimePicker(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("time.fxml"));
+        Parent parent = fxmlLoader.load();
+        var configurationController = fxmlLoader.<TimeController>getController();
+
+        Scene scene = new Scene(parent, 300, 100);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.showAndWait();
     }
 }
