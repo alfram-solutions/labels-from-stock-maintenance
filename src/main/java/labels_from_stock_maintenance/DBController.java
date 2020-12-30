@@ -1,5 +1,6 @@
 package labels_from_stock_maintenance;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -8,16 +9,22 @@ import javafx.stage.Stage;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 public class DBController {
 
+    private static final Logger LOGGER = Logger.getLogger(DBController.class.getName());
+
     Properties configProps;
     Optional<Connection> connection;
+
+    private String queryDatePurchaseIn = "SELECT DISTINCT DATENEW FROM STOCKDIARY WHERE REASON = 1 AND DATENEW BETWEEN ? AND ?";
+
 
     public DBController() throws IOException, SQLException{
         initDbProps();
@@ -57,7 +64,24 @@ public class DBController {
         connection = Optional.ofNullable(DriverManager.getConnection(
                 dBUrl, userLogin
         ));
-
     }
+
+    public ArrayList<String> runQueryDatePurchase(Timestamp startDate, Timestamp endDate) throws SQLException {
+        var datePurchasesInList = new ArrayList<String>();
+        try (PreparedStatement datePurchasesIn = connection.get().prepareStatement(queryDatePurchaseIn)) {
+            datePurchasesIn.setTimestamp(1, startDate);
+            datePurchasesIn.setTimestamp(2, endDate);
+            ResultSet rs = datePurchasesIn.executeQuery();
+
+
+            while (rs.next()) {
+                datePurchasesInList.add(rs.getTimestamp("DATENEW").toString());
+            }
+        }
+
+        return datePurchasesInList;
+    }
+
+
 
 }

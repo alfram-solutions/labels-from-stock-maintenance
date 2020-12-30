@@ -33,7 +33,7 @@
                         <HBox prefHeight="60.0" prefWidth="291.0">
                            <children>
                               <Label text="End" />
-                              <DatePicker fx:id="endDatePicker" editable="false" prefHeight="25.0" prefWidth="125.0" />
+                              <DatePicker fx:id="endDatePicker" editable="false" onAction="#getEndDate" prefHeight="25.0" prefWidth="125.0" />
                               <TextField fx:id="txtEndTime" editable="false" prefHeight="25.0" prefWidth="103.0" />
                               <Button mnemonicParsing="false" onAction="#openEndTimePicker" text="Time" />
                            </children>
