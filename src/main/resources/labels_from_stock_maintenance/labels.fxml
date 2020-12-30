@@ -40,7 +40,7 @@
                         </HBox>
                         <Button mnemonicParsing="false" onAction="#searchDatePurchase" text="Search" />
                         <Separator prefWidth="200.0" />
-                        <ListView prefHeight="361.0" prefWidth="291.0" />
+                        <ListView fx:id="purchasesIn" prefHeight="465.0" prefWidth="291.0" />
                      </children>
                   </VBox>
                </children>
@@ -58,7 +58,7 @@
                         <Separator prefHeight="9.0" prefWidth="341.0" />
                         <CheckBox mnemonicParsing="false" text="Pick All" />
                         <Separator prefHeight="10.0" prefWidth="341.0" />
-                        <ListView prefHeight="369.0" prefWidth="341.0" />
+                        <ListView prefHeight="518.0" prefWidth="341.0" />
                      </children></VBox>
                </children>
             </AnchorPane>

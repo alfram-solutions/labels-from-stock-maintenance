@@ -1,5 +1,9 @@
 package labels_from_stock_maintenance;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -42,6 +47,9 @@ public class LabelsController implements Initializable {
     @FXML
     public TextField txtEndTime;
 
+    @FXML
+    private ListView<String> purchasesIn;
+
     private int startHours;
     private int startMins;
     private int endHours;
@@ -59,6 +67,10 @@ public class LabelsController implements Initializable {
         } catch (IOException | SQLException ioe) {
             ioe.printStackTrace();
         }
+
+        purchasesIn.getSelectionModel().selectedItemProperty().addListener(
+                (observableValue, old_val, new_val) -> LOGGER.info(new_val)
+        );
 
     }
 
@@ -152,8 +164,13 @@ public class LabelsController implements Initializable {
            wrongDateAlert.setContentText("Invalid dates");
            wrongDateAlert.showAndWait();
        } else {
-           LOGGER.info(startTimestamp.toString());
-           LOGGER.info(endTimestamp.toString());
+           try {
+               var purchaseDateList = dbController.runQueryDatePurchase(startTimestamp, endTimestamp);
+               ObservableList<String> purchaseDates = FXCollections.observableList(purchaseDateList);
+               purchasesIn.setItems(purchaseDates);
+           } catch (SQLException se) {
+               se.printStackTrace();
+           }
        }
 
     }
