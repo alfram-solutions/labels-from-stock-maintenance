@@ -10,10 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -49,6 +46,9 @@ public class LabelsController implements Initializable {
 
     @FXML
     private ListView<Product> lvPurchases;
+
+    @FXML
+    private CheckBox chkPickAll;
 
     private int startHours;
     private int startMins;
@@ -198,5 +198,14 @@ public class LabelsController implements Initializable {
         }
 
         return Optional.empty();
+    }
+
+    @FXML
+    public void isPickAll(ActionEvent actionEvent) {
+        if (chkPickAll.isSelected()) {
+            LOGGER.info("All selected");
+        } else {
+            LOGGER.info("None selected");
+        }
     }
 }
