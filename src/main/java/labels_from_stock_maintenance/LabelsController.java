@@ -25,10 +25,7 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.Optional;
-import java.util.Properties;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.logging.Logger;
 
 public class LabelsController implements Initializable {
@@ -50,6 +47,9 @@ public class LabelsController implements Initializable {
     @FXML
     private ListView<String> purchasesIn;
 
+    @FXML
+    private ListView<Product> lvPurchases;
+
     private int startHours;
     private int startMins;
     private int endHours;
@@ -69,7 +69,14 @@ public class LabelsController implements Initializable {
         }
 
         purchasesIn.getSelectionModel().selectedItemProperty().addListener(
-                (observableValue, old_val, new_val) -> LOGGER.info(new_val)
+                (observableValue, old_val, new_val) -> {
+                    try {
+                        var prodsList = dbController.runQueryProducts(Timestamp.valueOf(new_val));
+                        buildProductList(prodsList);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
         );
 
     }
@@ -89,6 +96,10 @@ public class LabelsController implements Initializable {
         endDatePicker.setValue(endDate);
     }
 
+    private void buildProductList(ArrayList<Product> prods) {
+        ObservableList<Product> prodsObs = FXCollections.observableList(prods);
+        lvPurchases.setItems(prodsObs);
+    }
 
     @FXML
     public void openConfig(ActionEvent actionEvent) throws IOException{
