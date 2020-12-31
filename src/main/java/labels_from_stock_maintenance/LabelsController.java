@@ -11,10 +11,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVPrinter;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -78,6 +83,8 @@ public class LabelsController implements Initializable {
                     }
                 }
         );
+
+        lvPurchases.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
     }
 
@@ -203,9 +210,53 @@ public class LabelsController implements Initializable {
     @FXML
     public void isPickAll(ActionEvent actionEvent) {
         if (chkPickAll.isSelected()) {
-            LOGGER.info("All selected");
+            lvPurchases.getSelectionModel().selectAll();
         } else {
-            LOGGER.info("None selected");
+            lvPurchases.getSelectionModel().clearSelection();
+        }
+    }
+
+    @FXML
+    public void exportCsv(ActionEvent actionEvent) {
+        ObservableList<Product> selectedProds = lvPurchases.getSelectionModel().getSelectedItems();
+        if (selectedProds.size() > 0) {
+
+            FileChooser fileChooser = new FileChooser();
+            FileChooser.ExtensionFilter extensionFilter =
+                    new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
+            fileChooser.getExtensionFilters().add(extensionFilter);
+
+            File file = fileChooser.showSaveDialog(lvPurchases.getScene().getWindow());
+
+            // we have a List of java beans and a file handle
+            // output these beans as a csv file
+
+
+            if (file != null) {
+                try {
+                    writeCsvFile(file, selectedProds);
+                } catch (IOException ioe) {
+                    ioe.printStackTrace();
+                }
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("No items selected");
+            alert.showAndWait();
+        }
+    }
+
+    private void writeCsvFile(File fileHandle, List<Product> products) throws IOException{
+        try (FileWriter out = new FileWriter(fileHandle)) {
+            try (CSVPrinter printer = new CSVPrinter(out, CSVFormat.DEFAULT)) {
+                products.forEach((prod) -> {
+                    try {
+                        printer.printRecord(prod.getName(), prod.getCode(), Double.toString(prod.getPricesell()));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+            }
         }
     }
 }

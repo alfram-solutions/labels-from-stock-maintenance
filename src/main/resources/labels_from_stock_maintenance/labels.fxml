@@ -52,7 +52,7 @@
                         <HBox prefHeight="40.0" prefWidth="341.0">
                            <children>
                               <Label prefHeight="17.0" prefWidth="83.0" text="Export to CSV" />
-                              <Button mnemonicParsing="false" text="Export" />
+                              <Button mnemonicParsing="false" onAction="#exportCsv" text="Export" />
                            </children>
                         </HBox>
                         <Separator prefHeight="9.0" prefWidth="341.0" />
